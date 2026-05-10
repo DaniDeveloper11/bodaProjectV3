@@ -17,9 +17,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/google-fonts',
     'vue3-carousel-nuxt',
-    'nuxt-icons',
-    '@pinia/nuxt',
-    'pinia-plugin-persistedstate/nuxt'
+    'nuxt-icons'
   ],
   tailwindcss: {
     exposeConfig: true,

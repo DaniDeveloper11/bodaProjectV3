@@ -11,7 +11,7 @@
         <contactNovios id="informacion"></contactNovios>
         <DressCode id="dressCode"></DressCode>
         <mesaRegalos></mesaRegalos>
-        <confirmComponent id="confirmacion"></confirmComponent>
+        <confirmComponent class="" id="confirmacion"></confirmComponent>
         
     </div>
 </template>

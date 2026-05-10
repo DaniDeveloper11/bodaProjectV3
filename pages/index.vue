@@ -1,6 +1,5 @@
 <template>
     <div>
-        <!-- <countDown></countDown> -->
         <heroComponent></heroComponent>
         <OurParents></OurParents>  
         <promiseSection></promiseSection>

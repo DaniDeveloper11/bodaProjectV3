@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_sections_timelines",
+  "info": {
+    "displayName": "timeline",
+    "icon": "oneToOne"
+  },
+  "options": {},
+  "attributes": {
+    "events": {
+      "type": "component",
+      "component": "event.timeline",
+      "repeatable": true
+    },
+    "bottomImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

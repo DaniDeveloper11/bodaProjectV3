@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_event_map_locations",
+  "info": {
+    "displayName": "map-location",
+    "icon": "pinMap"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "latitude": {
+      "type": "float",
+      "required": true
+    },
+    "longitude": {
+      "type": "float",
+      "required": true
+    },
+    "placeName": {
+      "type": "string",
+      "required": true
+    },
+    "directionUrl": {
+      "type": "string"
+    },
+    "iconImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

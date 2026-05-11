@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_event_contacts",
+  "info": {
+    "displayName": "contact",
+    "icon": "user"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "default": "Contacta al novio"
+    },
+    "phone": {
+      "type": "string",
+      "default": "+52 3314857062",
+      "required": true
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "whatsappUrl": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}

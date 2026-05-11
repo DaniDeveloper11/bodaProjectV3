@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_event_parent_groups",
+  "info": {
+    "displayName": "parent-group",
+    "icon": "puzzle"
+  },
+  "options": {},
+  "attributes": {
+    "fatherName": {
+      "type": "string",
+      "required": true
+    },
+    "motherName": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}

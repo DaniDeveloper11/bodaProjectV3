@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_stories",
+  "info": {
+    "displayName": "story",
+    "icon": "earth"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "UNA PROMESA PARA TODA LA VIDA"
+    },
+    "body": {
+      "type": "richtext"
+    },
+    "mainImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_sections_contacts",
+  "info": {
+    "displayName": "contacts",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "contactList": {
+      "type": "component",
+      "component": "event.contact",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

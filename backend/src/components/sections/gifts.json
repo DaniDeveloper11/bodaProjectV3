@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_sections_gifts",
+  "info": {
+    "displayName": "gifts",
+    "icon": "gift"
+  },
+  "options": {},
+  "attributes": {
+    "registryUrl": {
+      "type": "string"
+    },
+    "bankDetails": {
+      "type": "component",
+      "component": "event.bank-details",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

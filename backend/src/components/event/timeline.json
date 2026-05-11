@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_event_timelines",
+  "info": {
+    "displayName": "timeline",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "time": {
+      "type": "string",
+      "default": "01:00 PM",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "default": "Misa Religiosa",
+      "required": true
+    },
+    "iconImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

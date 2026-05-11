@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_names",
+  "info": {
+    "displayName": "names",
+    "icon": "heart"
+  },
+  "options": {},
+  "attributes": {
+    "name1": {
+      "type": "string",
+      "default": "Nombre Novia",
+      "required": true
+    },
+    "name2": {
+      "type": "string",
+      "default": "Nombre Noviof",
+      "required": true
+    }
+  },
+  "config": {}
+}

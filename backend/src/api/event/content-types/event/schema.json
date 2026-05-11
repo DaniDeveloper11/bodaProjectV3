@@ -1,0 +1,89 @@
+{
+  "kind": "collectionType",
+  "collectionName": "events",
+  "info": {
+    "singularName": "event",
+    "pluralName": "events",
+    "displayName": "Event"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "eventType": {
+      "type": "enumeration",
+      "enum": [
+        "wedding",
+        "quinceañera",
+        "birthday",
+        "other"
+      ]
+    },
+    "eventDate": {
+      "type": "datetime",
+      "required": true,
+      "default": "2026-05-11T07:00:00.619Z"
+    },
+    "hero": {
+      "type": "component",
+      "component": "sections.hero",
+      "repeatable": false
+    },
+    "name": {
+      "type": "component",
+      "component": "sections.names",
+      "repeatable": false
+    },
+    "parents": {
+      "type": "component",
+      "component": "sections.parents",
+      "repeatable": false
+    },
+    "story": {
+      "type": "component",
+      "component": "sections.story",
+      "repeatable": false
+    },
+    "gallery": {
+      "type": "component",
+      "component": "sections.gallery",
+      "repeatable": false
+    },
+    "map": {
+      "type": "component",
+      "component": "sections.map",
+      "repeatable": false
+    },
+    "timeline": {
+      "type": "component",
+      "component": "sections.timeline",
+      "repeatable": false
+    },
+    "contacts": {
+      "type": "component",
+      "component": "sections.contacts",
+      "repeatable": false
+    },
+    "dressCode": {
+      "type": "component",
+      "component": "sections.dress-code",
+      "repeatable": false
+    },
+    "gifts": {
+      "type": "component",
+      "component": "sections.gifts",
+      "repeatable": false
+    },
+    "recommendedHotels": {
+      "type": "component",
+      "component": "sections.recommended-hotels",
+      "repeatable": false
+    }
+  }
+}

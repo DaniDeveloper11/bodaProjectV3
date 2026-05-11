@@ -440,6 +440,53 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiEventEvent extends Struct.CollectionTypeSchema {
+  collectionName: 'events';
+  info: {
+    displayName: 'Event';
+    pluralName: 'events';
+    singularName: 'event';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    contacts: Schema.Attribute.Component<'sections.contacts', false>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    dressCode: Schema.Attribute.Component<'sections.dress-code', false>;
+    eventDate: Schema.Attribute.DateTime &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'2026-05-11T07:00:00.619Z'>;
+    eventType: Schema.Attribute.Enumeration<
+      ['wedding', 'quincea\u00F1era', 'birthday', 'other']
+    >;
+    gallery: Schema.Attribute.Component<'sections.gallery', false>;
+    gifts: Schema.Attribute.Component<'sections.gifts', false>;
+    hero: Schema.Attribute.Component<'sections.hero', false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::event.event'> &
+      Schema.Attribute.Private;
+    map: Schema.Attribute.Component<'sections.map', false>;
+    name: Schema.Attribute.Component<'sections.names', false>;
+    parents: Schema.Attribute.Component<'sections.parents', false>;
+    publishedAt: Schema.Attribute.DateTime;
+    recommendedHotels: Schema.Attribute.Component<
+      'sections.recommended-hotels',
+      false
+    >;
+    slug: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    story: Schema.Attribute.Component<'sections.story', false>;
+    timeline: Schema.Attribute.Component<'sections.timeline', false>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -951,6 +998,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::event.event': ApiEventEvent;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

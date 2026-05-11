@@ -4,23 +4,23 @@
 
 ```bash
 # Desde la raiz del proyecto
-npx create-strapi-app@latest cms --quickstart
+npx create-strapi-app@latest backend --quickstart
 ```
 
-Esto crea el directorio `cms/` con Strapi 5 y SQLite (para desarrollo local).
+Esto crea el directorio `backend/` con Strapi 5.45.0 y SQLite (para desarrollo local).
 Al terminar, se abre el admin en `http://localhost:1337/admin`.
 
 **Crear tu usuario admin** (nombre, email, password) en el formulario que aparece.
 
 ---
 
-## Paso 2: Crear los Componentes (hijos primero)
+## Paso 2: Crear los Componentes hijos (categoria: `event`)
 
 En Strapi, los **Components** son bloques reutilizables que se embeben dentro de un Content Type. Hay que crearlos **antes** de crear el Event porque el Event los referencia.
 
 Ir a: **Content-Type Builder** (menu lateral izquierdo)
 
-### Orden de creacion (hijos antes que padres):
+### Orden de creacion: hijos primero, luego secciones.
 
 ---
 
@@ -30,10 +30,10 @@ Categoria: `event`
 
 | Campo | Tipo en Strapi | Configuracion |
 |-------|---------------|---------------|
-| `fatherName` |text | Required |
-| `motherName` |text | Required |
+| `fatherName` | Short text | Required |
+| `motherName` | Short text | Required |
 
-> Almacena un 2 campos de texto para los padres de los novios 
+> Almacena los nombres de los padres de cada novio/a.
 
 ---
 
@@ -47,19 +47,19 @@ Categoria: `event`
 | `latitude` | Number (float) | Required |
 | `longitude` | Number (float) | Required |
 | `placeName` | Short text | Required |
-| `directionsUrl` | Short text | - |
+| `directionUrl` | Short text | - |
 | `iconImage` | Media (single) | - |
 
 ---
 
-### 2.3 Componente: `event.timeline-event`
+### 2.3 Componente: `event.timeline`
 
 Categoria: `event`
 
 | Campo | Tipo en Strapi | Configuracion |
 |-------|---------------|---------------|
-| `time` | Short text | Required. Ej: "01:00 PM" |
-| `title` | Short text | Required. Ej: "Misa Religiosa" |
+| `time` | Short text | Required. Default: `"01:00 PM"` |
+| `title` | Short text | Required. Default: `"Misa Religiosa"` |
 | `iconImage` | Media (single) | - |
 
 ---
@@ -70,10 +70,10 @@ Categoria: `event`
 
 | Campo | Tipo en Strapi | Configuracion |
 |-------|---------------|---------------|
-| `label` | Short text | Required. Ej: "Contacta al Novio" |
-| `phone` | Short text | Required. Ej: "+52 3314857062" |
-| `` | Short text | URL completa de wa.me |
+| `label` | Short text | Default: `"Contacta al novio"` |
+| `phone` | Short text | Required. Default: `"+52 3314857062"` |
 | `avatar` | Media (single) | Foto del contacto |
+| `whatsappUrl` | Short text | Default: "link" |
 
 ---
 
@@ -83,36 +83,34 @@ Categoria: `event`
 
 | Campo | Tipo en Strapi | Configuracion |
 |-------|---------------|---------------|
-| `bankName` | Short text | Required. Ej: "BBVA" |
-| `accountHolder` | Short text | Required. Ej: "Daniela Elizabeth Orozco Gonzalez" |
-| `accountNumber` | Short text | Required. Ej: "2760430463" |
+| `bankName` | Short text | Required. Default: `"BBVA"` |
+| `accountHolder` | Short text | Required. Default: `"Firstname Lastname"` |
+| `accountNumber` | Short text | Required. Default: `"2760430463"` |
 
 ---
 
-## Paso 3: Crear los Componentes de Seccion
+### 2.6 Componente: `event.hotel`
+
+Categoria: `event`
+
+| Campo | Tipo en Strapi | Configuracion |
+|-------|---------------|---------------|
+| `name` | Short text | - |
+| `description` | Long text | - |
+| `address` | Short text | - |
+| `phone` | Short text | - |
+| `website` | Short text | - |
+| `image` | Media (single) | Foto del hotel |
+
+---
+
+## Paso 3: Crear los Componentes de Seccion (categoria: `sections`)
 
 Estos son componentes mas grandes que agrupan los hijos del paso anterior.
 
 ---
 
-### 3.1 Componente: `sections.theme`
-
-Categoria: `sections`
-
-| Campo | Tipo en Strapi | Configuracion |
-|-------|---------------|---------------|
-| `colorPrimary` | Short text | Default: "#6a8e58" |
-| `colorSecondary` | Short text | Default: "#f5f0e8" |
-| `colorAccent` | Short text | Default: "#d3924a" |
-| `colorHighlight` | Short text | Default: "#e8c9b8" |
-| `colorDark` | Short text | Default: "#1d1f21" |
-| `colorMuted` | Short text | Default: "#bba9a0" |
-| `colorMode` | Enumeration | Valores: `dark`, `light`. Default: `dark` |
-| `logoImage` | Media (single) | Logo del evento para el header |
-
----
-
-### 3.2 Componente: `sections.hero`
+### 3.1 Componente: `sections.hero`
 
 Categoria: `sections`
 
@@ -122,43 +120,41 @@ Categoria: `sections`
 
 ---
 
-### 3.3 Componente: `sections.names`
+### 3.2 Componente: `sections.names`
 
 Categoria: `sections`
 
 | Campo | Tipo en Strapi | Configuracion |
 |-------|---------------|---------------|
-| `name1` | Short text | Required. Ej: "Daniela" |
-| `name2` | Short text | Required. Ej: "Daniel" |
+| `name1` | Short text | Required. Default: `"Nombre Novia"` |
+| `name2` | Short text | Required. Default: `"Nombre Noviof"` |
 
 ---
 
-### 3.4 Componente: `sections.parents`
+### 3.3 Componente: `sections.parents`
 
 Categoria: `sections`
 
 | Campo | Tipo en Strapi | Configuracion |
 |-------|---------------|---------------|
-| `introText` | Rich text (Markdown) | Texto introductorio. Ej: "Con nuestro amor y con la presencia de Dios..." |
-| `separatorImage` | Media (single) | Imagen decorativa entre grupos |
-| `parentGroups` | Component (repeatable) | Usar `event.parent-group`. Min 1 |
+| `introText` | Rich text (Markdown) | Texto introductorio |
+| `parentGroups` | Component (repeatable) | Usar `event.parent-group` |
 
 ---
 
-### 3.5 Componente: `sections.story`
+### 3.4 Componente: `sections.story`
 
 Categoria: `sections`
 
 | Campo | Tipo en Strapi | Configuracion |
 |-------|---------------|---------------|
-| `title` | Short text | Ej: "UNA PROMESA PARA TODA LA VIDA" |
+| `title` | Short text | Default: `"UNA PROMESA PARA TODA LA VIDA"` |
 | `body` | Rich text (Markdown) | Texto de la historia de la pareja |
 | `mainImage` | Media (single) | Foto principal de la historia |
-| `decorativeImage` | Media (single) | Imagen decorativa (flor, etc) |
 
 ---
 
-### 3.6 Componente: `sections.gallery`
+### 3.5 Componente: `sections.gallery`
 
 Categoria: `sections`
 
@@ -168,75 +164,75 @@ Categoria: `sections`
 
 ---
 
-### 3.7 Componente: `sections.save-date`
+### 3.6 Componente: `sections.map`
 
 Categoria: `sections`
 
 | Campo | Tipo en Strapi | Configuracion |
 |-------|---------------|---------------|
-| `decorativeImage` | Media (single) | Imagen decorativa |
+| `regionTitle` | Short text | Default: `"Etzatlan Jalisco"` |
+| `locations` | Component (repeatable) | Usar `event.map-location` |
 
 ---
 
-### 3.8 Componente: `sections.map`
+### 3.7 Componente: `sections.timeline`
 
 Categoria: `sections`
 
 | Campo | Tipo en Strapi | Configuracion |
 |-------|---------------|---------------|
-| `regionTitle` | Short text | Ej: "Etzatlan Jalisco" |
-| `locations` | Component (repeatable) | Usar `event.map-location`. Min 1 |
-
----
-
-### 3.9 Componente: `sections.timeline`
-
-Categoria: `sections`
-
-| Campo | Tipo en Strapi | Configuracion |
-|-------|---------------|---------------|
-| `events` | Component (repeatable) | Usar `event.timeline-event`. Min 1 |
+| `events` | Component (repeatable) | Usar `event.timeline` |
 | `bottomImage` | Media (single) | Imagen al pie del timeline |
 
 ---
 
-### 3.10 Componente: `sections.contacts`
+### 3.8 Componente: `sections.contacts`
 
 Categoria: `sections`
 
 | Campo | Tipo en Strapi | Configuracion |
 |-------|---------------|---------------|
-| `contactList` | Component (repeatable) | Usar `event.contact`. Min 1 |
+| `contactList` | Component (repeatable) | Usar `event.contact` |
 
 ---
 
-### 3.11 Componente: `sections.dress-code`
+### 3.9 Componente: `sections.dress-code`
 
 Categoria: `sections`
 
 | Campo | Tipo en Strapi | Configuracion |
 |-------|---------------|---------------|
-| `womenDescription` | Short text | Ej: "Vestidos florales, colores claros o tonos coloridos" |
-| `womenRestrictions` | Short text | Ej: "No Negro, Lila o Rojo" |
-| `womenColors` | JSON | Array de hex prohibidos. Ej: `["#000000","#FF0000","#8B5CF6"]` |
-| `menDescription` | Short text | Ej: "Vestimenta elegante" |
-| `menRestrictions` | Short text | Ej: "No Verde olivo" |
-| `menColors` | JSON | Array de hex prohibidos. Ej: `["#556B2F"]` |
+| `womenDescription` | Short text | Default: `"Vestidos florales, colores claros o tonos coloridos"` |
+| `womenRestrictions` | Short text | - |
+| `womenColors` | JSON | Array de hex. Ej: `["#000000","#FF0000","#8B5CF6"]` |
+| `manDescription` | Short text | Default: `"Vestimenta elegante"` |
+| `menRestriction` | Short text | - |
+| `menColors` | JSON | Array de hex. Ej: `["#556B2F"]` |
 | `mainImage` | Media (single) | Imagen principal del dress code |
 | `womenOutfitImages` | Media (multiple) | Fotos de ejemplo para mujeres |
 | `menOutfitImages` | Media (multiple) | Fotos de ejemplo para hombres |
-| `danceDescription` | Short text | Ej: "La fiesta no para, asi que asegurate de traer zapatos comodos" |
 
 ---
 
-### 3.12 Componente: `sections.gifts`
+### 3.10 Componente: `sections.gifts`
 
 Categoria: `sections`
 
 | Campo | Tipo en Strapi | Configuracion |
 |-------|---------------|---------------|
-| `registryUrl` | Short text | URL de mesa de regalos (Liverpool, etc) |
-| `bankDetails` | Component (repeatable) | Usar `event.bank-detail` |
+| `registryUrl` | Short text | URL de mesa de regalos |
+| `bankDetails` | Component (repeatable) | Usar `event.bank-details` |
+
+---
+
+### 3.11 Componente: `sections.recommended-hotels`
+
+Categoria: `sections`
+
+| Campo | Tipo en Strapi | Configuracion |
+|-------|---------------|---------------|
+| `Title` | Short text | Default: `"Hoteles Recomendados"` |
+| `hotetels` | Component (repeatable) | Usar `event.hotel` |
 
 ---
 
@@ -246,26 +242,26 @@ Ir a: **Content-Type Builder** > **Create new collection type**
 
 - Display name: `Event`
 - API ID: `event`
+- Draft & Publish: **Habilitado**
 
 ### Campos del Event:
 
 | Campo | Tipo en Strapi | Configuracion |
 |-------|---------------|---------------|
 | `slug` | Short text | Required, Unique |
-| `eventType` | Enumeration | Valores: `wedding`, `quinceanera`, `birthday`, `other` |
+| `eventType` | Enumeration | Valores: `wedding`, `quinceañera`, `birthday`, `other` |
 | `eventDate` | DateTime | Required |
-| `theme` | Component (single) | Usar `sections.theme` |
 | `hero` | Component (single) | Usar `sections.hero` |
-| `names` | Component (single) | Usar `sections.names` |
+| `name` | Component (single) | Usar `sections.names` |
 | `parents` | Component (single) | Usar `sections.parents` |
 | `story` | Component (single) | Usar `sections.story` |
 | `gallery` | Component (single) | Usar `sections.gallery` |
-| `saveDate` | Component (single) | Usar `sections.save-date` |
 | `map` | Component (single) | Usar `sections.map` |
 | `timeline` | Component (single) | Usar `sections.timeline` |
 | `contacts` | Component (single) | Usar `sections.contacts` |
 | `dressCode` | Component (single) | Usar `sections.dress-code` |
 | `gifts` | Component (single) | Usar `sections.gifts` |
+| `recommendedHotels` | Component (single) | Usar `sections.recommended-hotels` |
 
 Dar click en **Save** (Strapi reinicia el servidor).
 
@@ -294,82 +290,73 @@ Ahora `GET http://localhost:1337/api/events` es accesible sin token.
    - `eventType`: `wedding`
    - `eventDate`: `2026-10-04 13:00`
 
-3. Llenar **theme**:
-   - colorPrimary: `#6a8e58`
-   - colorSecondary: `#f5f0e8`
-   - colorAccent: `#d3924a`
-   - colorHighlight: `#e8c9b8`
-   - colorDark: `#1d1f21`
-   - colorMuted: `#bba9a0`
-   - colorMode: `dark`
-   - logoImage: subir `logoDDr.webp`
+3. Llenar **hero**:
+   - backgroundImage: subir imagen de fondo
 
-4. Llenar **hero**:
-   - backgroundImage: subir `fotoHero.webp`
-
-5. Llenar **names**:
+4. Llenar **name**:
    - name1: `Daniela`
    - name2: `Daniel`
 
-6. Llenar **parents**:
+5. Llenar **parents**:
    - introText: `Con nuestro amor y con la presencia de Dios entre nosotros y la bendicion de nuestros padres:`
-   - separatorImage: subir `t.webp`
    - parentGroups:
-     - Grupo 1: `["Enrique Orozco Hernandez", "Elizabet Gonzalez Gutierrez"]`
-     - Grupo 2: `["Hector Rene Montes Orendain", "Antonia Villarreal Rangel"]`
+     - Grupo 1: fatherName=`Enrique Orozco Hernandez`, motherName=`Elizabet Gonzalez Gutierrez`
+     - Grupo 2: fatherName=`Hector Rene Montes Orendain`, motherName=`Antonia Villarreal Rangel`
 
-7. Llenar **story**:
+6. Llenar **story**:
    - title: `UNA PROMESA PARA TODA LA VIDA`
-   - body: `Nos conocimos en el 2015...` (el texto completo)
-   - mainImage: subir `foto2.webp`
-   - decorativeImage: subir `flowerCorner.webp`
+   - body: texto de la historia de la pareja
+   - mainImage: subir foto principal
 
-8. Llenar **gallery**:
-   - images: subir `us1.webp` hasta `us13.webp` (excepto us7)
+7. Llenar **gallery**:
+   - images: subir todas las fotos del carrusel
 
-9. Llenar **saveDate**:
-   - decorativeImage: subir `t.webp`
+8. Llenar **map**:
+   - regionTitle: `Etzatlan Jalisco`
+   - locations:
+     - Location 1: name=`Templo`, latitude=`20.76439604962931`, longitude=`-104.08049966545539`, placeName=`Templo de la Purisima Concepcion`, directionUrl=(URL de Google Maps), iconImage=subir icono
+     - Location 2: name=`Recepcion`, latitude=`20.76774609400717`, longitude=`-104.09720436461963`, placeName=`El Ranchito, Escobedo #7`, directionUrl=`https://maps.app.goo.gl/6pbkHd4kgUk2wsPu8`, iconImage=subir icono
 
-10. Llenar **map**:
-    - regionTitle: `Etzatlan Jalisco`
-    - locations:
-      - Location 1: name=`Templo`, lat=`20.76439604962931`, lng=`-104.08049966545539`, placeName=`Templo de la Purisima Concepcion`, directionsUrl=(URL de Google Maps), iconImage=subir `iglesiaBlanco.webp`
-      - Location 2: name=`Recepcion`, lat=`20.76774609400717`, lng=`-104.09720436461963`, placeName=`El Ranchito, Escobedo #7`, directionsUrl=`https://maps.app.goo.gl/6pbkHd4kgUk2wsPu8`, iconImage=subir `papel-picado.webp`
+9. Llenar **timeline**:
+   - events (7 entradas):
+     - `08:00 AM` - `Getting Ready` - subir icono
+     - `01:00 PM` - `Misa Religiosa` - subir icono
+     - `03:00 PM` - `Inicio de la recepcion` - subir icono
+     - `04:00 PM` - `Banquete` - subir icono
+     - `06:00 PM` - `Primer Vals` - subir icono
+     - `06:30 PM` - `Inicio de la fiesta` - subir icono
+     - `11:00 PM` - `Fin de la recepcion` - subir icono
+   - bottomImage: subir imagen decorativa
 
-11. Llenar **timeline**:
-    - events (7 entradas):
-      - `08:00 AM` - `Getting Ready` - subir `traje-de-boda.webp`
-      - `01:00 PM` - `Misa Religiosa` - subir `iglesia.webp`
-      - `03:00 PM` - `Inicio de la recepcion` - subir `animar.webp`
-      - `04:00 PM` - `Banquete` - subir `banquete.webp`
-      - `06:00 PM` - `Primer Vals` - subir `baile.webp`
-      - `06:30 PM` - `Inicio de la fiesta` - subir `pista-de-baile.webp`
-      - `11:00 PM` - `Fin de la recepcion` - subir `coche.webp`
-    - bottomImage: subir `foto3.webp`
-
-12. Llenar **contacts**:
+10. Llenar **contacts**:
     - contactList:
-      - Contact 1: label=`Contacta al Novio`, phone=`+52 3314857062`, whatsappUrl=`https://wa.me/523314857062?text=...`, avatar=subir `novio.webp`
-      - Contact 2: label=`Contacta a la Novia`, phone=`+52 3334001701`, whatsappUrl=`https://wa.me/523334001701?text=...`, avatar=subir `novia.webp`
+      - Contact 1: label=`Contacta al Novio`, phone=`+52 3314857062`, avatar=subir foto
+      - Contact 2: label=`Contacta a la Novia`, phone=`+52 3334001701`, avatar=subir foto
 
-13. Llenar **dressCode**:
+11. Llenar **dressCode**:
     - womenDescription: `Vestidos florales, colores claros o tonos coloridos`
     - womenRestrictions: `No Negro, Lila o Rojo`
     - womenColors: `["#000000", "#FF0000", "#8B5CF6"]`
-    - menDescription: `Vestimenta elegante`
-    - menRestrictions: `No Verde olivo`
+    - manDescription: `Vestimenta elegante`
+    - menRestriction: `No Verde olivo`
     - menColors: `["#556B2F"]`
-    - mainImage: subir `dressCodeImg.webp`
-    - womenOutfitImages: subir `vestidos1.webp` a `vestidos4.webp`
-    - menOutfitImages: subir `suits1.webp` a `suits3.webp`
-    - danceDescription: `La fiesta no para, asi que asegurate de traer zapatos comodos. Sugerimos Tenis`
+    - mainImage: subir imagen principal
+    - womenOutfitImages: subir fotos de ejemplo para mujeres
+    - menOutfitImages: subir fotos de ejemplo para hombres
 
-14. Llenar **gifts**:
+12. Llenar **gifts**:
     - registryUrl: `https://mesaderegalos.liverpool.com.mx/milistaderegalos/51992607`
     - bankDetails:
       - bankName=`BBVA`, accountHolder=`Daniela Elizabeth Orozco Gonzalez`, accountNumber=`2760430463`
 
-15. Click **Save** y luego **Publish**
+13. Llenar **recommendedHotels**:
+    - Title: `Hoteles Recomendados`
+    - hotetels:
+      - Hotel 1: name, description, address, phone, website, image
+      - Hotel 2: name, description, address, phone, website, image
+      - Hotel 3: name, description, address, phone, website, image
+
+14. Click **Save** y luego **Publish**
 
 ---
 
@@ -389,30 +376,120 @@ Deberias ver el JSON completo con todos los datos del evento, incluyendo URLs de
 
 ---
 
+## Paso 8: Configuracion del servidor
+
+### Base de datos (`config/database.js`)
+
+- **Desarrollo**: SQLite (archivo `.tmp/data.db`)
+- **Produccion**: Soporta MySQL y PostgreSQL via variables de entorno
+
+### Servidor (`config/server.js`)
+
+- **Host**: `0.0.0.0` (configurable via `HOST`)
+- **Port**: `1337` (configurable via `PORT`)
+
+### API (`config/api.js`)
+
+- **defaultLimit**: 25
+- **maxLimit**: 100
+- **withCount**: true
+
+### Middlewares (`config/middlewares.js`)
+
+```
+strapi::logger, strapi::errors, strapi::security, strapi::cors,
+strapi::poweredBy, strapi::query, strapi::body, strapi::session,
+strapi::favicon, strapi::public
+```
+
+### Variables de entorno (`.env`)
+
+```env
+HOST=0.0.0.0
+PORT=1337
+DATABASE_CLIENT=sqlite
+DATABASE_FILENAME=.tmp/data.db
+APP_KEYS=<base64>
+API_TOKEN_SALT=<base64>
+ADMIN_JWT_SECRET=<base64>
+TRANSFER_TOKEN_SALT=<base64>
+ENCRYPTION_KEY=<base64>
+JWT_SECRET=<base64>
+```
+
+---
+
 ## Resumen de lo creado
 
 ```
 Componentes hijos (categoria: event):
-  - event.parent-group      (names)
-  - event.map-location       (name, lat, lng, placeName, directionsUrl, iconImage)
-  - event.timeline-event     (time, title, iconImage)
-  - event.contact            (label, phone, whatsappUrl, avatar)
-  - event.bank-detail        (bankName, accountHolder, accountNumber)
+  - event.parent-group        (fatherName, motherName)
+  - event.map-location        (name, latitude, longitude, placeName, directionUrl, iconImage)
+  - event.timeline            (time, title, iconImage)
+  - event.contact             (label, phone, avatar)
+  - event.bank-details        (bankName, accountHolder, accountNumber)
+  - event.hotel               (name, description, address, phone, website, image)
 
 Componentes de seccion (categoria: sections):
-  - sections.theme           (colores, colorMode, logo)
-  - sections.hero            (backgroundImage)
-  - sections.names           (name1, name2)
-  - sections.parents         (introText, separatorImage, parentGroups[])
-  - sections.story           (title, body, mainImage, decorativeImage)
-  - sections.gallery         (images[])
-  - sections.save-date       (decorativeImage)
-  - sections.map             (regionTitle, locations[])
-  - sections.timeline        (events[], bottomImage)
-  - sections.contacts        (contactList[])
-  - sections.dress-code      (women*, men*, mainImage, outfitImages[], danceDescription)
-  - sections.gifts           (registryUrl, bankDetails[])
+  - sections.hero              (backgroundImage)
+  - sections.names             (name1, name2)
+  - sections.parents           (introText, parentGroups[])
+  - sections.story             (title, body, mainImage)
+  - sections.gallery           (images[])
+  - sections.map               (regionTitle, locations[])
+  - sections.timeline          (events[], bottomImage)
+  - sections.contacts          (contactList[])
+  - sections.dress-code        (womenDescription, womenRestrictions, womenColors, manDescription, menRestriction, menColors, mainImage, womenOutfitImages[], menOutfitImages[])
+  - sections.gifts             (registryUrl, bankDetails[])
+  - sections.recommended-hotels (Title, hotetels[])
 
 Collection Type:
-  - Event (slug, eventType, eventDate + 12 componentes de seccion)
+  - Event (slug, eventType, eventDate + 11 componentes de seccion)
+```
+
+---
+
+## Estructura de archivos del backend
+
+```
+backend/
+├── src/
+│   ├── api/
+│   │   └── event/
+│   │       ├── content-types/event/schema.json
+│   │       ├── controllers/event.js
+│   │       ├── services/event.js
+│   │       └── routes/event.js
+│   ├── components/
+│   │   ├── event/
+│   │   │   ├── parent-group.json
+│   │   │   ├── map-location.json
+│   │   │   ├── timeline.json
+│   │   │   ├── bank-details.json
+│   │   │   ├── contact.json
+│   │   │   └── hotel.json
+│   │   └── sections/
+│   │       ├── hero.json
+│   │       ├── names.json
+│   │       ├── parents.json
+│   │       ├── story.json
+│   │       ├── gallery.json
+│   │       ├── map.json
+│   │       ├── timeline.json
+│   │       ├── contacts.json
+│   │       ├── dress-code.json
+│   │       ├── gifts.json
+│   │       └── recommended-hotels.json
+│   ├── admin/
+│   ├── extensions/
+│   └── index.js
+├── config/
+│   ├── database.js
+│   ├── server.js
+│   ├── admin.js
+│   ├── middlewares.js
+│   ├── plugins.js
+│   └── api.js
+├── .env
+└── package.json
 ```

@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_event_bank_details",
+  "info": {
+    "displayName": "bank-detail",
+    "icon": "gift"
+  },
+  "options": {},
+  "attributes": {
+    "bankName": {
+      "type": "string",
+      "default": "BBVA",
+      "required": true
+    },
+    "accountHolder": {
+      "type": "string",
+      "default": "Firstname Lastname",
+      "required": true
+    },
+    "accountNumber": {
+      "type": "string",
+      "default": "2760430463",
+      "required": true
+    }
+  },
+  "config": {}
+}

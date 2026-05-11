@@ -1,0 +1,62 @@
+{
+  "collectionName": "components_sections_dress_codes",
+  "info": {
+    "displayName": "dress-code",
+    "icon": "shirt"
+  },
+  "options": {},
+  "attributes": {
+    "womenDescription": {
+      "type": "string",
+      "default": "Vestidos florales, colores claros o tonos coloridos",
+      "required": false
+    },
+    "womenRestrictions": {
+      "type": "string"
+    },
+    "womenColors": {
+      "type": "json"
+    },
+    "manDescription": {
+      "type": "string",
+      "default": "Vestimenta elegante"
+    },
+    "menRestriction": {
+      "type": "string"
+    },
+    "menColors": {
+      "type": "json"
+    },
+    "mainImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "womenOutfitImages": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "menOutfitImages": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_sections_recommended_hotels",
+  "info": {
+    "displayName": "Recommended Hotels",
+    "icon": "house"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "default": "Hoteles Recomendados"
+    },
+    "hotetels": {
+      "type": "component",
+      "component": "event.hotel",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

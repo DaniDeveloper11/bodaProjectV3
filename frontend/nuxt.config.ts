@@ -6,7 +6,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY
+      googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
+      strapiUrl: process.env.STRAPI_URL || 'http://localhost:1337'
     }
   },
   compatibilityDate: '2024-11-01',

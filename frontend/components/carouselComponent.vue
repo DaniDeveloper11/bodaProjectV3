@@ -24,21 +24,25 @@ const thumbnailsConfig = {
   gap: 10,
 }
 
-const images = [
-  'us1.webp',
-  'us2.webp',
-  'us3.webp',
-  'us4.webp',
-  'us5.webp',
-  'us6.webp',
-  // 'us7.webp',
-  'us8.webp',
-  'us9.webp',
-  'us10.webp',
-  'us11.webp',
-  'us12.webp',
-  'us13.webp',
+const event = inject('event')
+const config = useRuntimeConfig()
+
+const fallbackImages = [
+  'us1.webp', 'us2.webp', 'us3.webp', 'us4.webp', 'us5.webp',
+  'us6.webp', 'us8.webp', 'us9.webp', 'us10.webp', 'us11.webp',
+  'us12.webp', 'us13.webp',
 ]
+
+const images = computed(() => {
+  const strapiImages = event?.value?.gallery?.images
+  if (strapiImages?.length) {
+    return strapiImages.map(img => {
+      const url = img.url
+      return url.startsWith('http') ? url : `${config.public.strapiUrl}${url}`
+    })
+  }
+  return fallbackImages
+})
 </script>
 
 <template>

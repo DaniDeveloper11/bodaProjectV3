@@ -13,14 +13,17 @@
         </div>
 
         <datos-bancarios
-            bank-name="BBVA"
-            account-holder="Daniela Elizabeth Orozco Gonzalez"
-            account-number="2760430463"
+            v-for="(banco, i) in bankDetails"
+            :key="i"
+            :bank-name="banco.bankName"
+            :account-holder="banco.accountHolder"
+            :account-number="banco.accountNumber"
         ></datos-bancarios>
 
-        <div class="flex flex-col gap-4 mx-auto max-w-md w-full">
+        <div v-if="registryUrl" class="flex flex-col gap-4 mx-auto max-w-md w-full">
             <a class="relative bg-violet-500 text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:bg-violet-600 transition duration-300 text-center"
-                href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/51605729">
+                :href="registryUrl"
+                target="_blank">
                 <GiftIcon class="inline-block w-5 h-5 mr-2" />
                 Mesa de Regalos Liverpool
             </a>
@@ -42,10 +45,19 @@
 </template>
 <script setup>
 import { GiftIcon, ArrowLeftIcon } from '@heroicons/vue/20/solid'
-import { useRouter } from 'vue-router'
 const router = useRouter()
+const route = useRoute()
+
+const { event } = useEvent()
+provide('event', event)
+
+const bankDetails = computed(() => event?.value?.gifts?.bankDetails ?? [
+    { bankName: 'BBVA', accountHolder: 'Daniela Elizabeth Orozco Gonzalez', accountNumber: '2760430463' }
+])
+const registryUrl = computed(() => event?.value?.gifts?.registryUrl ?? null)
 
 const navigateToHome = () => {
-    router.push('/')
+    const slug = route.query.event ? `?event=${route.query.event}` : ''
+    router.push(`/${slug}`)
 }
 </script>

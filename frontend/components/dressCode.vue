@@ -17,30 +17,38 @@
         <div class="flex flex-col items-center">
           <h3 class="tex-center text-lg font-dancing text-gray-900 dark:text-white md:text-4xl">Ellas</h3>
           <p class="text-center text-gray-900 dark:text-white font-lora text-xs mt-2 font-medium md:text-md">
-            Vestidos florales, colores claros o <br> tonos coloridos
+            {{ womenDescription }}
           </p>
-          <p class="text-center text-brand-sage font-lora text-xs mt-2 font-medium md:text-sm">
-            No Negro, Lila o Rojo
+          <p v-if="womenRestrictions" class="text-center text-brand-sage font-lora text-xs mt-2 font-medium md:text-sm">
+            {{ womenRestrictions }}
           </p>
           <ul class="flex gap-3 justify-center mt-3">
-            <li class="bg-black size-6 md:size-8 rounded-full border-2 border-white/40 shadow-md ring-1 ring-gray-400/30"></li>
-            <li class="bg-red-500 size-6 md:size-8 rounded-full border-2 border-white/40 shadow-md"></li>
-            <li class="bg-violet-300 size-6 md:size-8 rounded-full border-2 border-white/40 shadow-md"></li>
+            <li
+              v-for="(color, i) in womenColors"
+              :key="i"
+              class="size-6 md:size-8 rounded-full border-2 border-white/40 shadow-md"
+              :style="{ backgroundColor: color }"
+            ></li>
           </ul>
         </div>
-        <div class="">
-          <NuxtImg src="dressCodeImg.webp" class="rounded-lg shadow-lg object-cover max-w-60 flat " />
+        <div>
+          <NuxtImg :src="mainImage" class="rounded-lg shadow-lg object-cover max-w-60" />
         </div>
         <div class="flex flex-col items-center">
           <h3 class="tex-center text-lg font-dancing text-gray-900 dark:text-white md:text-4xl">Ellos</h3>
           <p class="text-center text-gray-900 dark:text-white font-lora text-xs mt-2 font-medium md:text-md">
-            Vestimenta elegante,
+            {{ manDescription }}
           </p>
-          <p class="text-center text-brand-sage font-lora text-xs mt-2 font-medium md:text-sm">
-            No Verde olivo
+          <p v-if="menRestriction" class="text-center text-brand-sage font-lora text-xs mt-2 font-medium md:text-sm">
+            {{ menRestriction }}
           </p>
           <ul class="flex gap-3 justify-center mt-3">
-            <li class="bg-green-600 size-6 md:size-8 rounded-full border-2 border-white/40 shadow-md"></li>
+            <li
+              v-for="(color, i) in menColors"
+              :key="i"
+              class="size-6 md:size-8 rounded-full border-2 border-white/40 shadow-md"
+              :style="{ backgroundColor: color }"
+            ></li>
           </ul>
         </div>
       </div>
@@ -71,17 +79,33 @@
 
 </template>
 <script setup lang="ts">
-const ellosImages = [
-  "suits1.webp",
-  "suits2.webp",
-  "suits3.webp"
-];
-const ellasImages = [
-  "vestidos1.webp",
-  "vestidos2.webp",
-  "vestidos3.webp",
-  "vestidos4.webp",
-  // "vestidos5.png",
-];
+const event = inject<any>('event')
+const config = useRuntimeConfig()
 
+const dc = computed(() => event?.value?.dressCode)
+
+const womenDescription = computed(() => dc.value?.womenDescription ?? 'Vestidos florales, colores claros o tonos coloridos')
+const womenRestrictions = computed(() => dc.value?.womenRestrictions ?? 'No Negro, Lila o Rojo')
+const womenColors      = computed(() => dc.value?.womenColors ?? ['#000000', '#ef4444', '#c4b5fd'])
+
+const manDescription = computed(() => dc.value?.manDescription ?? 'Vestimenta elegante')
+const menRestriction = computed(() => dc.value?.menRestriction ?? 'No Verde olivo')
+const menColors      = computed(() => dc.value?.menColors ?? ['#16a34a'])
+
+const mainImage = computed(() => {
+  const url = dc.value?.mainImage?.url
+  if (!url) return '/dressCodeImg.webp'
+  return url.startsWith('http') ? url : `${config.public.strapiUrl}${url}`
+})
+
+function toUrls(mediaArray: any[]): string[] {
+  if (!mediaArray?.length) return []
+  return mediaArray.map(img => {
+    const url = img.url
+    return url.startsWith('http') ? url : `${config.public.strapiUrl}${url}`
+  })
+}
+
+const ellasImages = computed(() => toUrls(dc.value?.womenOutfitImages) ?? ['vestidos1.webp', 'vestidos2.webp', 'vestidos3.webp', 'vestidos4.webp'])
+const ellosImages = computed(() => toUrls(dc.value?.menOutfitImages)   ?? ['suits1.webp', 'suits2.webp', 'suits3.webp'])
 </script>

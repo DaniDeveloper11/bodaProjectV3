@@ -1,11 +1,11 @@
 <template>
   <div class="lg:flex lg:h-full lg:flex-col">
     <div class="px-4 sm:px-6">
-      <h2 class="text-[#6a8e58] font-dancing text-3xl text-center">04/10/2025</h2>
+      <h2 class="text-[#6a8e58] font-dancing text-3xl text-center">{{ fechaFormateada }}</h2>
     </div>
     <header class="flex justify-center border-b border-gray-200 px-6 pb-4 pt-2 lg:flex-none">
       <h1 class="text-base font-semibold text-gray-200">
-        <time datetime="2025-08" class="text-xl font-lora">Octubre 2025</time>
+        <time class="text-xl font-lora">{{ tituloMes }}</time>
       </h1>
     </header>
     <div class="shadow ring-1 ring-black/5 lg:flex lg:flex-auto lg:flex-col">
@@ -113,99 +113,66 @@ import {
 } from "@heroicons/vue/20/solid";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import heartIcon from "~/ui/icons/heartIcon.vue";
-import { ref, onMounted, nextTick } from "vue";
+import { computed, inject } from "vue";
 
-const lineHeight = ref(0);
-const latestEvent = ref(null);
-const days = [
-  { date: "2025-07-28", events: [] },
-  { date: "2025-07-29", events: [] },
-  { date: "2025-07-30", events: [] },
-  { date: "2025-08-01", isCurrentMonth: true, events: [] },
-  { date: "2025-08-02", isCurrentMonth: true, events: [] },
-  {
-    date: "2025-08-03",
-    isCurrentMonth: true,
-    events: [],
-  },
-  {
-    date: "2025-01-04",
-    isCurrentMonth: true,
-    isSelected: true,
-    events: [
-      {
-        id: 4,
-        name: "Maple syrup museum",
-        time: "3PM",
-        datetime: "2022-01-22T15:00",
-        href: "#",
-      },
-      {
-        id: 5,
-        name: "Hockey game",
-        time: "7PM",
-        datetime: "2022-01-22T19:00",
-        href: "#",
-      },
-    ],
-  },
-  { date: "2025-01-05", isCurrentMonth: true, events: [] },
-  { date: "2025-01-06", isCurrentMonth: true, events: [] },
-  {
-    date: "2025-01-07",
-    isCurrentMonth: true,
-    events: [],
-  },
-  { date: "2025-01-08", isCurrentMonth: true, events: [] },
-  { date: "2025-01-09", isCurrentMonth: true, events: [] },
-  { date: "2025-01-10", isCurrentMonth: true, events: [] },
-  { date: "2025-01-11", isCurrentMonth: true, events: [] },
-  {
-    date: "2025-01-12",
-    isCurrentMonth: true,
-    //   isToday: true,
-    events: [],
-  },
-  { date: "2025-01-13", isCurrentMonth: true, events: [] },
-  { date: "2025-01-14", isCurrentMonth: true, events: [] },
-  { date: "2025-01-15", isCurrentMonth: true, events: [] },
-  { date: "2025-01-16", isCurrentMonth: true, events: [] },
-  { date: "2025-01-17", isCurrentMonth: true, events: [] },
-  { date: "2025-01-18", isCurrentMonth: true, events: [] },
-  { date: "2025-01-19", isCurrentMonth: true, events: [] },
-  { date: "2025-01-20", isCurrentMonth: true, events: [] },
-  { date: "2025-01-21", isCurrentMonth: true, events: [] },
-  { date: "2025-01-22", isCurrentMonth: true, events: [] },
-  { date: "2025-01-23", isCurrentMonth: true, events: [] },
-  { date: "2025-01-24", isCurrentMonth: true, events: [] },
-  { date: "2025-01-25", isCurrentMonth: true, events: [] },
-  { date: "2025-01-26", isCurrentMonth: true, events: [] },
-  { date: "2025-01-27", isCurrentMonth: true, events: [] },
-  { date: "2025-01-28", isCurrentMonth: true, events: [] },
-  { date: "2025-01-29", isCurrentMonth: true, events: [] },
-  { date: "2025-01-30", isCurrentMonth: true, events: [] },
-  { date: "2025-01-31", isCurrentMonth: true, events: [] },
-  { date: "2025-02-01", events: [] },
-  { date: "2025-02-02", events: [] },
-  { date: "2025-02-03", events: [] },
-  {
-    date: "2025-02-04",
-    events: [],
-  },
-  { date: "2025-02-05", events: [] },
-  { date: "2025-02-06", events: [] },
-  { date: "2025-02-07", events: [] },
-];
-const selectedDay = days.find((day) => day.isSelected);
+const event = inject('event')
 
+const eventDate = computed(() =>
+  event?.value?.eventDate ? new Date(event.value.eventDate) : new Date('2026-10-04T13:00:00')
+)
 
-onMounted(async () => {
-  await nextTick()
-  if (latestEvent.value && latestEvent.value[0]) {
-    const containerTop = latestEvent.value[0].parentElement.getBoundingClientRect().top;
-    const lastEventBottom = latestEvent.value[0].getBoundingClientRect().bottom;
-    lineHeight.value = lastEventBottom - containerTop;
+const fechaFormateada = computed(() => {
+  const d = eventDate.value
+  const dia = String(d.getDate()).padStart(2, '0')
+  const mes = String(d.getMonth() + 1).padStart(2, '0')
+  const anio = d.getFullYear()
+  return `${dia}/${mes}/${anio}`
+})
+
+const tituloMes = computed(() =>
+  eventDate.value.toLocaleDateString('es-MX', { month: 'long', year: 'numeric' })
+    .replace(/^\w/, c => c.toUpperCase())
+)
+
+const days = computed(() => {
+  const fecha = eventDate.value
+  const anio = fecha.getFullYear()
+  const mes = fecha.getMonth()
+  const diaEvento = fecha.getDate()
+
+  const primerDiaDelMes = new Date(anio, mes, 1).getDay()
+  const diasEnMes = new Date(anio, mes + 1, 0).getDate()
+  const diasEnMesAnterior = new Date(anio, mes, 0).getDate()
+
+  const resultado = []
+
+  // Días del mes anterior
+  for (let i = primerDiaDelMes - 1; i >= 0; i--) {
+    const d = diasEnMesAnterior - i
+    const m = mes === 0 ? 12 : mes
+    const a = mes === 0 ? anio - 1 : anio
+    resultado.push({ date: `${a}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`, isCurrentMonth: false, events: [] })
   }
+
+  // Días del mes actual
+  for (let d = 1; d <= diasEnMes; d++) {
+    resultado.push({
+      date: `${anio}-${String(mes + 1).padStart(2,'0')}-${String(d).padStart(2,'0')}`,
+      isCurrentMonth: true,
+      isSelected: d === diaEvento,
+      events: d === diaEvento ? [{ id: 1, name: 'El Gran Día' }] : []
+    })
+  }
+
+  // Días del mes siguiente para completar la grilla (42 celdas = 6 filas × 7 cols)
+  const restantes = 42 - resultado.length
+  for (let d = 1; d <= restantes; d++) {
+    const m = mes === 11 ? 1 : mes + 2
+    const a = mes === 11 ? anio + 1 : anio
+    resultado.push({ date: `${a}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`, isCurrentMonth: false, events: [] })
+  }
+
+  return resultado
 })
 
 </script>

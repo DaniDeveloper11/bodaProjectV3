@@ -7,6 +7,7 @@
     </div>
     <div v-else>
         <!-- Secciones de cumpleaños -->
+        <headerComponent></headerComponent>
         <heroComponent></heroComponent>
         <SaveDateComponent></SaveDateComponent>
         <googleMap id="ubicacion"></googleMap>

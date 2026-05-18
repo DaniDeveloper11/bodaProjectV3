@@ -27,6 +27,7 @@ export const useEvent = () => {
         'populate[dressCode][populate]': '*',
         'populate[gifts][populate]': '*',
         'populate[recommendedHotels][populate]': '*',
+        'populate[logo]': 'true',
       },
       watch: [slug]
     }

@@ -6,6 +6,7 @@
         <p class="text-gray-400 font-poppins">Evento no encontrado.</p>
     </div>
     <div v-else>
+        <headerComponent></headerComponent>
         <heroComponent></heroComponent>
         <OurParents></OurParents>
         <promiseSection></promiseSection>

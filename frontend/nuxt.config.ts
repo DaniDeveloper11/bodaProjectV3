@@ -47,7 +47,7 @@ export default defineNuxtConfig({
     }
   },
   image: {
-    domains: ['localhost']
+    domains: ['localhost', 'localhost:1337']
   },
   carousel: {
     prefix: 'MyPrefix'

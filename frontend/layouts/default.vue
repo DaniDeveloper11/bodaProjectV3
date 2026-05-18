@@ -1,10 +1,7 @@
 <template>
   <div>
-    <HeaderComponent></HeaderComponent>
-
     <main class="flex mx-auto lg:mx-0 2xl:mx-40 max-w-8xl px-4 sm:px-6 lg:px-8">
       <div class="flex-1 min-w-0 overflow-hidden">
-        <petaloComponent></petaloComponent>
         <slot />
 
         <button v-if="showButton" @click="scrollToTop"
@@ -16,7 +13,7 @@
     </main>
   <footer class="border-t border-gray-200 dark:border-white/10 mt-8">
     <div class="mx-auto max-w-7xl px-6 py-8 flex items-center justify-center lg:px-8">
-      <p class="text-center text-sm text-gray-500 dark:text-gray-400 font-poppins">&copy; 2025 Realizado por el Novio.</p>
+      <p class="text-center text-sm text-gray-500 dark:text-gray-400 font-poppins">&copy; 2026 Realizado por el Novio.</p>
     </div>
   </footer>
 

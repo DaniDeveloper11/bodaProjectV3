@@ -84,6 +84,16 @@
       "type": "component",
       "component": "sections.recommended-hotels",
       "repeatable": false
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }

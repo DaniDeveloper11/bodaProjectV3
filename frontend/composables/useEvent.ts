@@ -16,7 +16,17 @@ export const useEvent = () => {
     {
       params: {
         'filters[slug][$eq]': slug,
-        'populate': '*'
+        'populate[hero][populate]': '*',
+        'populate[name]': '*',
+        'populate[parents][populate]': '*',
+        'populate[story][populate]': '*',
+        'populate[gallery][populate]': '*',
+        'populate[map][populate]': '*',
+        'populate[timeline][populate]': '*',
+        'populate[contacts][populate]': '*',
+        'populate[dressCode][populate]': '*',
+        'populate[gifts][populate]': '*',
+        'populate[recommendedHotels][populate]': '*',
       },
       watch: [slug]
     }

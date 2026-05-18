@@ -46,6 +46,9 @@ export default defineNuxtConfig({
       Lora: [400, 700]
     }
   },
+  image: {
+    domains: ['localhost']
+  },
   carousel: {
     prefix: 'MyPrefix'
   },

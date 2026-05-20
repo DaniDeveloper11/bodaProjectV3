@@ -38,7 +38,10 @@ const registryUrl = computed(() => {
     return url || 'https://mesaderegalos.liverpool.com.mx/milistaderegalos/51992607'
 })
 
+const route = useRoute()
+
 const irABanco = () => {
-    navigateTo('/banco')
+    const slug = route.query.event ? `?event=${route.query.event}` : ''
+    navigateTo(`/banco${slug}`)
 }
 </script>

@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "invitados",
+  "info": {
+    "singularName": "invitado",
+    "pluralName": "invitados",
+    "displayName": "Invitado",
+    "description": "Lista de invitados por evento con control de confirmación RSVP"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nombre": {
+      "type": "string",
+      "required": true
+    },
+    "codigo": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "acompanantesMaximos": {
+      "type": "integer",
+      "required": true,
+      "default": 0
+    },
+    "confirmado": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "fechaConfirmacion": {
+      "type": "datetime"
+    },
+    "notas": {
+      "type": "text"
+    },
+    "acompanantes": {
+      "type": "component",
+      "component": "event.acompanante",
+      "repeatable": true
+    },
+    "event": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::event.event",
+      "inversedBy": "invitados"
+    },
+    "telefono": {
+      "type": "string"
+    }
+  }
+}

@@ -1,5 +1,17 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface EventAcompanante extends Struct.ComponentSchema {
+  collectionName: 'components_event_acompanantes';
+  info: {
+    description: 'Acompa\u00F1ante de un invitado, con nombre opcional';
+    displayName: 'Acompanante';
+    icon: 'user';
+  };
+  attributes: {
+    nombre: Schema.Attribute.String;
+  };
+}
+
 export interface EventBankDetails extends Struct.ComponentSchema {
   collectionName: 'components_event_bank_details';
   info: {
@@ -258,6 +270,7 @@ export interface SectionsTimeline extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'event.acompanante': EventAcompanante;
       'event.bank-details': EventBankDetails;
       'event.contact': EventContact;
       'event.hotel': EventHotel;

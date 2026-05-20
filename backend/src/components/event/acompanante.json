@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_event_acompanantes",
+  "info": {
+    "displayName": "Acompanante",
+    "icon": "user",
+    "description": "Acompañante de un invitado, con nombre opcional"
+  },
+  "options": {},
+  "attributes": {
+    "nombre": {
+      "type": "string"
+    }
+  }
+}

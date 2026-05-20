@@ -465,6 +465,7 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     gallery: Schema.Attribute.Component<'sections.gallery', false>;
     gifts: Schema.Attribute.Component<'sections.gifts', false>;
     hero: Schema.Attribute.Component<'sections.hero', false>;
+    invitados: Schema.Attribute.Relation<'oneToMany', 'api::invitado.invitado'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::event.event'> &
       Schema.Attribute.Private;
@@ -482,6 +483,49 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
       Schema.Attribute.Unique;
     story: Schema.Attribute.Component<'sections.story', false>;
     timeline: Schema.Attribute.Component<'sections.timeline', false>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiInvitadoInvitado extends Struct.CollectionTypeSchema {
+  collectionName: 'invitados';
+  info: {
+    description: 'Lista de invitados por evento con control de confirmaci\u00F3n RSVP';
+    displayName: 'Invitado';
+    pluralName: 'invitados';
+    singularName: 'invitado';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    acompanantes: Schema.Attribute.Component<'event.acompanante', true>;
+    acompanantesMaximos: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<0>;
+    codigo: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    confirmado: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    event: Schema.Attribute.Relation<'manyToOne', 'api::event.event'>;
+    fechaConfirmacion: Schema.Attribute.DateTime;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::invitado.invitado'
+    > &
+      Schema.Attribute.Private;
+    nombre: Schema.Attribute.String & Schema.Attribute.Required;
+    notas: Schema.Attribute.Text;
+    publishedAt: Schema.Attribute.DateTime;
+    telefono: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1000,6 +1044,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::event.event': ApiEventEvent;
+      'api::invitado.invitado': ApiInvitadoInvitado;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

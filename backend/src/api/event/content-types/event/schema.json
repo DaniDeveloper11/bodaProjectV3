@@ -94,6 +94,12 @@
         "videos",
         "audios"
       ]
+    },
+    "invitados": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::invitado.invitado",
+      "mappedBy": "event"
     }
   }
 }

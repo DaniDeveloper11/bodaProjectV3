@@ -4,7 +4,7 @@
       <h2 class="text-[#6a8e58] font-dancing text-3xl text-center">{{ fechaFormateada }}</h2>
     </div>
     <header class="flex justify-center border-b border-gray-200 px-6 pb-4 pt-2 lg:flex-none">
-      <h1 class="text-base font-semibold text-gray-200">
+      <h1 class="text-base font-semibold text-gray-700">
         <time class="text-xl font-lora">{{ tituloMes }}</time>
       </h1>
     </header>
@@ -62,7 +62,7 @@
           <button v-for="day in days" :key="day.date" type="button" :class="[
             day.isCurrentMonth ? 'bg-orange-200' : 'bg-gray-50',
             (day.isSelected || day.isToday) && 'font-semibold',
-            day.isSelected && 'text-white',
+            day.isSelected && 'text-gray-900',
             !day.isSelected && day.isToday && 'text-indigo-600',
             !day.isSelected &&
             day.isCurrentMonth &&

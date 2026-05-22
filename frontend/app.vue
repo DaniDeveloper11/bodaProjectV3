@@ -1,5 +1,5 @@
 <template>
-  <div class="transition-colors duration-500 ease-in-out bg-brand-cream dark:bg-brand-dark">
+  <div class="bg-brand-cream">
 
     <NuxtLayout>
       <NuxtPage />
@@ -14,9 +14,6 @@
 
 <script setup>
 import 'driver.js/dist/driver.css'
-
-const colorMode = useColorMode()
-colorMode.value = 'dark'
 
 const { startTour, hasSeenTour } = useTour()
 const tourButtonRef = ref(null)

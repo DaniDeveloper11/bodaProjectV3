@@ -3,10 +3,10 @@
     <div class="px-4 py-5 sm:px-6 flex justify-center text-balance">
       <span
         v-if="introText"
-        class="lora text-center mx-auto font-semibold text-2xl dark:text-white"
+        class="lora text-center mx-auto font-semibold text-2xl text-gray-800"
         v-html="introText"
       ></span>
-      <span v-else class="lora text-center mx-auto font-semibold text-2xl dark:text-white">
+      <span v-else class="lora text-center mx-auto font-semibold text-2xl text-gray-800">
         Con nuestro amor y con la presencia de Dios entre nosotros y la bendición de nuestros padres:
       </span>
     </div>

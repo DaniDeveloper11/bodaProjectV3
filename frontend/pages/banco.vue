@@ -5,7 +5,7 @@
         </div>
 
         <div class="mx-auto max-w-xl w-full">
-            <h1 class="text-3xl md:text-4xl font-dancing mb-4 dark:text-white">Banco de Regalos</h1>
+            <h1 class="text-3xl md:text-4xl font-dancing mb-4 text-gray-800">Banco de Regalos</h1>
             <p class="text-sm text-center text-gray-600 dark:text-gray-300 px-3 leading-relaxed">
                 Su presencia es lo más importante para nosotros, pero si desean hacernos un regalo, hemos creado un banco de regalos para facilitarlo.
                 Aquí pueden encontrar los datos bancarios para hacer una transferencia.

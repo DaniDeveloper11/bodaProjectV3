@@ -8,8 +8,8 @@
                 {{ titulo }}
             </h2>
             <div>
-                <p v-if="cuerpo" class="lora text-left text-lg mr-14 dark:text-white" v-html="cuerpo"></p>
-                <p v-else class="lora text-left text-lg mr-14 dark:text-white">
+                <p v-if="cuerpo" class="lora text-left text-lg mr-14 text-gray-800" v-html="cuerpo"></p>
+                <p v-else class="lora text-left text-lg mr-14 text-gray-800">
                     Nos conocimos en el 2015 y desde ese momento sentimos esa
                     conexión. Sin embargo, no fue hasta finales del 2018 donde volvimos a reconectar y el resto es
                     historia. Desde ese momento supimos que éramos el uno para el otro. Cada risa compartida, cada

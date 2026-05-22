@@ -37,7 +37,7 @@
                   <div class="text-lg font-semibold text-brand-rose dark:text-brand-gold">
                     {{ item.time }}
                   </div>
-                  <div class="text-xl font-cursive dark:text-white">{{ item.title }}</div>
+                  <div class="text-xl font-cursive text-gray-800">{{ item.title }}</div>
                 </div>
               </div>
               <div class="relative z-10 flex flex-col items-center">
@@ -61,7 +61,7 @@
                   <div class="text-lg font-semibold text-brand-rose dark:text-brand-gold">
                     {{ item.time }}
                   </div>
-                  <div class="text-xl font-cursive dark:text-white">{{ item.title }}</div>
+                  <div class="text-xl font-cursive text-gray-800">{{ item.title }}</div>
                 </div>
               </div>
             </li>

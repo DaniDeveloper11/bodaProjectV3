@@ -5,7 +5,7 @@
     <div v-else-if="!event" class="flex justify-center items-center min-h-screen">
         <p class="text-gray-400 font-poppins">Evento no encontrado.</p>
     </div>
-    <div v-else>
+    <div class="bg-white" v-else>
         <headerComponent></headerComponent>
         <heroComponent></heroComponent>
         <OurParents></OurParents>

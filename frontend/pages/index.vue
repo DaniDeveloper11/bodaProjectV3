@@ -20,7 +20,10 @@ watch([event, pending], ([e, p]) => {
         navigateTo(`/quinceanera${slug}`)
     } else if (e.eventType === 'birthday') {
         navigateTo(`/birthday${slug}`)
-    } else {
+    } else if (e.eventType === 'wedding-minimalist') {
+        navigateTo(`/wedding-minimalist${slug}`)
+    } 
+    else {
         navigateTo(`/wedding${slug}`)
     }
 }, { immediate: true })

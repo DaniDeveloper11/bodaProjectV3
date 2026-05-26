@@ -22,6 +22,8 @@ watch([event, pending], ([e, p]) => {
         navigateTo(`/birthday${slug}`)
     } else if (e.eventType === 'wedding-minimalist') {
         navigateTo(`/wedding-minimalist${slug}`)
+    }  else if (e.eventType === 'wedding-elegant') {
+        navigateTo(`/wedding-elegant${slug}`)
     } 
     else {
         navigateTo(`/wedding${slug}`)

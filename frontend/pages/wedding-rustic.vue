@@ -46,14 +46,15 @@
 
         <section class="py-8">
              <div class="flex flex-col items-center justify-center text-center px-6 text-[#ab6c49]" >
-               
-                <h1 class="font-playfair font-bold text-5xl sm:text-7xl tracking-wider uppercase leading-none">
-                    {{ event.name?.name1 ?? 'Jacob' }}
-                </h1>
-                <p class="font-dancing text-3xl sm:text-4xl my-2 opacity-90">&amp;</p>
-                <h1 class="font-playfair font-bold text-5xl sm:text-7xl tracking-wider uppercase leading-none">
-                    {{ event.name?.name2 ?? 'Marilize' }}
-                </h1>
+               <div class="flex gap-2 justify-evenly items-center">
+                 <h1 class="font-playfair font-bold text-3xl sm:text-7xl tracking-wider uppercase leading-none">
+                   {{ event.name?.name1 ?? 'Jacob' }}
+                 </h1>
+               <p class="font-dancing text-3xl sm:text-4xl my-2 opacity-90">&amp;</p>
+               <h1 class="font-playfair font-bold text-3xl sm:text-7xl tracking-wider uppercase leading-none">
+                 {{ event.name?.name2 ?? 'Marilize' }}
+               </h1>
+               </div> 
                 <p class="font-poppins text-xs tracking-[0.25em] uppercase mt-6 opacity-70">{{ formattedDate }}</p>
             </div>
         </section>
